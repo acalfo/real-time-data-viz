@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="utf-8">
+    	
+    	<title>JS Coding Challenge</title>
+    	
+    	<meta name="viewport" content="width=device-width">
+
+    	<!--Load Styles -->
+		<link rel="stylesheet" href="style/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style/css/main.css">
+		<link rel="stylesheet" href="style/css/growl.css">
+	</head>
+	<!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+ 	 <body ng-controller="mainController">
+  		<div growl></div>	
+	    <div class="container" >
+	      	<div class="header row">
+	      		<div class="col-md-5">
+	      			<h3 class="text-muted">JS Coding Challenge</h3>
+	      		</div>
+	        	<div class="col-md-2">
+	        	    <gauge min="0" alerter="true" size="75" freq="frequency" value="gaugeValue" label="Query Time" class="gauge"></gauge>
+	        	</div>
+	        	<div class="col-md-5">
+		        	<ul class="nav nav-pills pull-right">
+					    <li ng-repeat="item in navItems" ng-class="navClass('{{item.path}}')"> <a href='#/{{item.path}}{{item.hash}}'> <span ng-bind="item.text"></span></span></a> 
+				        </li>
+		        	</ul>
+		        </div>
+	      	</div>
+
+	      	<div ng-view=""></div>
+
+			<div class="footer">
+		    	<p><span class="glyphicon glyphicon-heart"></span> by Alex Calfo</p>
+		    </div>
+	    </div>
+	
+		<!--Load Components -->
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script src="components/angular/angular.min.js"></script>
+		<script src="components/angular-growl/build/angular-growl.min.js"></script>   
+		<script src="components/angular-route/angular-route.min.js"></script>	
+		<script src="components/angular-bootstrap/ui-bootstrap.min.js"></script>	
+		<script src="components/d3/d3.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+
+		<!--Load Angular Files-->
+		<script type="text/javascript" src="scripts/app.js"></script>
+		<script type="text/javascript" src="scripts/services/QueryTimes.js"></script>
+		<script type="text/javascript" src="scripts/services/socket.js"></script>
+		<script type="text/javascript" src="scripts/services/gauge.js"></script>
+		<script type="text/javascript" src="scripts/controllers/mainController.js"></script>
+		<script type="text/javascript" src="scripts/directives/gchart.js"></script>
+		<script type="text/javascript" src="scripts/directives/gauge.js"></script>
+		<script type="text/javascript" src="scripts/filters/setDecimal.js"></script>
+
+	</body>
+</html>

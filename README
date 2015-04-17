@@ -1,0 +1,20 @@
+Hi, 
+
+This is my app for the JS Coding Challenge!
+
+Steps to install & run:
+First, cd into root directory
+
+Then run the following commands: 
+1) npm install   
+2) bower install   
+3) node server.js
+
+Then open your browser & go to localhost:3000
+
+***Configuration options for the app are located in QueryTimes.js 
+
+
+Thanks,
+
+Alex Calfo

@@ -1,0 +1,92 @@
+<div class="container">
+  <h1 id="go">Critical Database Table Status</h1>
+  <h3 >Average Query Times</h1>
+    <div class="row graph-header">
+      <div class="col-md-3 text-center">
+        <p class="btn-header">Graph Type</p>
+      </div>
+      <div class="col-md-6 text-center">
+        <p class="btn-header"> Graph Size </p>
+      </div>
+      <div class="col-md-3 text-center">
+        <p class="btn-header">Data Flow</p>
+      </div>
+    </div>
+    <div class="row graph-btns">
+      <div class="col-md-3">
+        <div class="btn-group full-width" dropdown is-open="status.isopen">
+          <button type="button" class="btn btn-primary dropdown-toggle full-width" dropdown-toggle ng-disabled="disabled">
+             {{chart.type.typeName}} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="type in chartTypes">
+              <a ng-click="selectType(type)">{{type.typeName}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 form-inline">
+        <input type="number" class="form-control input-size" ng-model="sizeChange" placeholder="Enter max datapoints"></input>
+        <button class="btn btn-success" ng-click="setSize(sizeChange)"><span class="glyphicon glyphicon-ok"></span></button>
+      </div>
+      <div class="col-md-3">
+        <button ng-if="!fixed" class="btn btn-primary full-width" ng-click="toggleFixed()"> Fixed </button>
+        <button ng-if="fixed" class="btn btn-primary full-width" ng-click="toggleFixed()"> Cycle </button>
+      </div>
+    </div>
+    
+    <div g-chart></div>
+    
+    <div class="row form-inline move-btns">
+      <div class="col-md-3 text-right">
+        <button type="button" class="btn btn-info btn-md" ng-click="rewind()">
+          <span class="glyphicon glyphicon-backward"></span> 
+        </button>
+        <button type="button" class="btn btn-info btn-md" ng-click="moveLeft(amount)">
+          <span class="glyphicon glyphicon-arrow-left"></span> 
+        </button>
+      </div>
+      <div class="col-md-6 text-center">
+        <input type="number" class="form-control full-width" ng-model="amount" placeholder="Move"></input>
+      </div>
+      <div class="col-md-3 text-left">
+        <button type="button" class="btn btn-info btn-md " ng-click="moveRight(amount)">
+          <span class="glyphicon glyphicon-arrow-right"></span> 
+        </button>
+        <button type="button" class="btn btn-info btn-md" ng-click="fastForward()">
+          <span class="glyphicon glyphicon-forward"></span> 
+        </button>
+      </div>
+    </div>
+    <div class="row status-container">
+      <div class="col-md-1"></div>
+      <div class="col-md-5">
+        <gauge min="0" alerter="false" size="250" freq="frequency"  value="gaugeValue" label="Query Time" class="gauge"></gauge>
+      </div>
+      <div class="col-md-6">
+        <h2>Statistics </h2>
+        <div class="stat-wrapper">
+          <p class="stat-title"> 
+            Average: 
+            <b class="average">
+              {{average | setDecimal : roundOff}}
+            </b>
+          </p>
+          <p class="stat-title"> 
+            Max: 
+            <b class="max">
+              {{max_value | setDecimal : roundOff}}
+            </b>
+          </p>
+          <p class="stat-title"> 
+            Min: 
+            <b class="min">
+              {{min_value | setDecimal : roundOff}}
+            </b>
+          </p>
+        </div>
+      </div>
+    </div>
+</div>
+
+
